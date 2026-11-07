@@ -1,20 +1,19 @@
 import uuid
-
 from datetime import date, timedelta
 
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy import select, text
-from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
 
 from app.database import Base, engine, get_db
-from app.models import Route, Stop, Trip, Seat, Booking
+from app.models import Booking, Route, Seat, Stop, Trip
 from app.schemas import (
-    RouteResponse,
-    TripResponse,
-    SeatResponse,
     BookingCreate,
-    BookingResponse
+    BookingResponse,
+    RouteResponse,
+    SeatResponse,
+    TripResponse,
 )
 
 app = FastAPI(

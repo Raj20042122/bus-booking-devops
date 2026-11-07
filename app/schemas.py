@@ -1,6 +1,7 @@
-from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, field_validator
 import re
+from datetime import date
+
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class RouteResponse(BaseModel):
