@@ -85,12 +85,15 @@ def health():
     return {"status": "healthy"}
 
 
+from sqlalchemy.exc import SQLAlchemyError
+
+
 @app.get("/ready")
 def readiness(db: Session = Depends(get_db)):
     try:
         db.execute(text("SELECT 1"))
         return {"status": "ready", "database": "connected"}
-    except Exception:
+    except SQLAlchemyError:
         raise HTTPException(
             status_code=503,
             detail="Database unavailable"
